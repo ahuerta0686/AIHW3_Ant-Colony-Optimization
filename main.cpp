@@ -12,7 +12,7 @@
 using namespace std;
 
 string pick_edge(list<graph<string, int>::edge> edges, double alpha, double beta, ant_agent a);
-string random_distribution_select(map<double, string, greater<double> > distributions);
+string random_distribution_select(map<string, double> distributions);
 double random_double(double min, double max);
 double calculate_pheromone(double Q, ant_agent a);
 void evaporate_pheromone(graph<string, int> g, double rho);
@@ -109,7 +109,7 @@ string pick_edge(list<graph<string, int>::edge> edges, double alpha, double beta
         graph<string, int>::edge e = *it;
         if (!a.has_visited(e.end->data)) {
 			double left = pow(e.pheromone, alpha);
-			double right = pow(e.cost, beta);
+			double right = pow(1 / e.cost, beta);
 			denominator += left * right;
         }
         else {
@@ -124,7 +124,7 @@ string pick_edge(list<graph<string, int>::edge> edges, double alpha, double beta
     if (DEBUG)
         cout << "Denominator: " << denominator << endl;
 */
-    map<double, string, greater<double> > edge_probabilities;
+    map<string, double> edge_probabilities;
     for (list<graph<string, int>::edge>::iterator it = edges.begin(); it != edges.end(); ++it) {
         graph<string, int>::edge e = *it;
         if (!a.has_visited(e.end->data)) {
@@ -133,7 +133,7 @@ string pick_edge(list<graph<string, int>::edge> edges, double alpha, double beta
             if (DEBUG)
                 cout << "Numerator: " << numerator << " = " << pow(e.pheromone, alpha) << " * " << pow(e.cost, beta) << endl;
 */
-            edge_probabilities.insert(pair<double, string>(numerator / denominator, e.end->data));
+            edge_probabilities.insert(pair<string, double>(e.end->data, numerator / denominator));
         }
     }
 /*
@@ -146,15 +146,15 @@ string pick_edge(list<graph<string, int>::edge> edges, double alpha, double beta
 }
 
 // Select a random string based on associated distributions
-string random_distribution_select(map<double, string, greater<double> > distributions) {
+string random_distribution_select(map<string, double> distributions) {
     double probability_total = 1;
-    for (map<double, string>::iterator it = distributions.begin(); it != distributions.end(); ++it) {
-        pair<double, string> entry = *it;
-        if (random_double(0, probability_total) < entry.first) {
-            return entry.second;
+    for (map<string, double>::iterator it = distributions.begin(); it != distributions.end(); ++it) {
+        pair<string, double> entry = *it;
+        if (random_double(0, probability_total) < entry.second) {
+            return entry.first;
         }
         else {
-            probability_total -= entry.first;
+            probability_total -= entry.second;
         }
     }
 }
