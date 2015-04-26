@@ -1,3 +1,11 @@
+//////////////////////////////////////////////////////////////
+// Name:        Alejandro Huerta                            //
+// Subject:     Artificial Intelligence                     //
+// Date:        04/26/2015                                  //
+// Description: Ant Algorithms homework. Requires graph.h,  //
+//                  graph_maker.h, ant_agent.h. Runs an ant //
+//                  algorithm to find the shortest path.    //
+//////////////////////////////////////////////////////////////
 #include <iostream>
 #include <math.h>
 #include <map>

@@ -1,3 +1,9 @@
+//////////////////////////////////////////////////////////////
+// Name:        Alejandro Huerta                            //
+// Subject:     Artificial Intelligence                     //
+// Date:        04/26/2015                                  //
+// Description: graph.h - graph class used for algorithm    //
+//////////////////////////////////////////////////////////////
 #include <iostream>
 #include <list>
 #include <string>

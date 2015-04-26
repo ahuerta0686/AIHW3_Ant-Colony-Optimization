@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////
+// Name:        Alejandro Huerta                            //
+// Subject:     Artificial Intelligence                     //
+// Date:        04/26/2015                                  //
+// Description: ant_agent.h - holds various information     //
+//                  about an ant for the algorithm          //
+//////////////////////////////////////////////////////////////
 #include <list>
 #include <set>
 #include <iostream>

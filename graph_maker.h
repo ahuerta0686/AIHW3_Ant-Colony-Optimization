@@ -1,3 +1,10 @@
+//////////////////////////////////////////////////////////////
+// Name:        Alejandro Huerta                            //
+// Subject:     Artificial Intelligence                     //
+// Date:        04/26/2015                                  //
+// Description: graph_maker.h - takes input file and makes  //
+//                  a graph                                 //
+//////////////////////////////////////////////////////////////
 #include<fstream>
 #include<map>
 #include<algorithm>
